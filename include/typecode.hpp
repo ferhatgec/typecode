@@ -32,6 +32,8 @@
 enum Tokens : char {
     Lang = '$',
     Branch = '@',
+    OS = '?',
+
     Push = '+',
     Push5 = '*',
     Push10 = '/',
@@ -47,14 +49,17 @@ class TypeCode {
     // taken from https://www.quora.com/What-are-the-branches-of-computer-science
     std::vector<std::string> branches;
 
+    std::vector<std::string> operating_systems;
+
     std::string data;
 
-    bool is_language, is_branch;
+    bool is_language, is_branch, is_os;
 
     unsigned stack;
 public:
     std::vector<std::string> info_languages;
     std::vector<std::string> info_branches;
+    std::vector<std::string> info_operating_systems;
 public:
     TypeCode() = default;
     ~TypeCode()= default;
@@ -62,6 +67,7 @@ public:
     void init(const std::string file_data) noexcept {
         this->init_languages();
         this->init_branches();
+        this->init_operating_systems();
 
         for(auto& ch : file_data) {
             // $+++++++;+++;$
@@ -76,6 +82,11 @@ public:
 
                 case Branch: {
                     this->is_branch = !this->is_branch;
+                    break;
+                }
+
+                case OS: {
+                    this->is_os = !this->is_os;
                     break;
                 }
 
@@ -109,6 +120,8 @@ public:
                         this->info_branches.push_back(this->branches[this->stack]);
                     } else if(this->is_language && this->stack < this->languages.size()) {
                         this->info_languages.push_back(this->languages[this->stack]);
+                    } else if(this->is_os && this->stack < this->operating_systems.size()) {
+                        this->info_operating_systems.push_back(this->operating_systems[this->stack]);
                     } this->stack = 0;
                     break;
                 }
@@ -415,6 +428,146 @@ public:
             "Scientific computing",
             "Software engineering",
             "Theory of computing"
+        };
+    }
+
+    void init_operating_systems() noexcept {
+        this->operating_systems = {
+            "Arthur",
+            "RISC OS",
+            "Fire OS",
+            "Amiga OS",
+            "AMSDOS",
+            "macOS",
+            "iOS",
+            "iPadOS",
+            "tvOS",
+            "bridgeOS",
+            "Atari DOS",
+            "BeOS",
+            "Unix",
+            "BESYS",
+            "Plan 9",
+            "Inferno",
+            "Android",
+            "Harmony OS",
+            "LiteOS",
+            "iRMX",
+            "PC DOS",
+            "OS/2",
+            "Remix OS",
+            "KaiOS",
+            "LynxOS",
+            "Xenix",
+            "MS-DOS",
+            "DOS/V",
+            "Windows",
+                "Windows 1.0",
+                "Windows 2.0",
+                "Windows 3.0",
+                "Windows 3.1x",
+                "Windows 3.2",
+                "Windows 95",
+                "Windows 98",
+                "Windows ME",
+
+                "Windows NT",
+                    "Windows NT 3.1",
+                    "Windows NT 4.0",
+                    "Windows 2000",
+                    "Windows XP",
+                    "Windows Server 2003",
+                    "Windows Vista",
+                    "Windows Phone 7",
+                    "Windows 8",
+                    "Windows RT",
+                    "Windows Phone 8",
+                    "Windows 8.1",
+                    "Windows Phone 8.1",
+                    "Windows 10",
+                    "Windows 10 Mobile",
+                    "Windows 11",
+            "ES",
+            "NeXTSTEP",
+            "NetWare",
+            "UnixWare",
+            "Bada",
+            "Tizen",
+            "One UI",
+            "Sun OS",
+            "Solaris"
+            "BSD",
+                "FreeBSD",
+                    "DragonFlyBSD",
+                    "MidnightBSD",
+                    "GhostBSD",
+                    "TrueOS",
+                    "prismBSD",
+                "NetBSD",
+                    "OpenBSD",
+                        "Bitrig",
+                "Darwin",
+
+            "GNU Hurd",
+            "Linux",
+                "RHEL",
+                    "Rocky Linux"
+                "RPM",
+                    "Red Hat Linux",
+                    "CentOS",
+                    "Fedora",
+                        "Qubes OS"
+                    "openSUSE",
+                        "SUSE Linux Enterprise Desktop",
+                        "SUSE Linux Enterprise Server",
+                        "SUSE Studio",
+                        "GeckoLinux",
+                    "Mandrake Linux",
+                "Debian",
+                    "MX Linux",
+                    "Deepin",
+                    "Devuan",
+                    "Kali Linux",
+                    "Pure OS",
+                    "Ubuntu",
+                        "Kubuntu",
+                        "Lubuntu",
+                        "Ubuntu Budgie",
+                        "Ubuntu Kylin",
+                        "Ubuntu Mate",
+                        "Xubuntu",
+
+                        "Bodhi Linux",
+                        "elementary OS",
+                        "Linux Mint",
+                        "Zorin OS",
+                        "Pop!_OS",
+
+                "Arch Linux",
+                    "Manjaro",
+                    "Artix Linux",
+                    "EndeavourOS",
+                    "SteamOS",
+                "Gentoo",
+                    "Chrome OS",
+                    "Chromium OS",
+                "NixOS",
+                "Void Linux",
+                "GuixSD",
+                "Solus",
+            "Redox",
+            "illumos",
+                "OpenIndiana",
+
+            "FreeDOS",
+            "Genode",
+            "FFusionOS",
+            "Ghost OS",
+            "Haiku",
+            "ReactOS",
+            "TempleOS",
+            "Serenity",
+            "Visopsys"
         };
     }
 };
