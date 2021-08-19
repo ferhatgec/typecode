@@ -2,7 +2,7 @@
 ## typecode, create unique code that introduce yourself. 
 
 ### An example code:
-```$%///*++;%////*++;///++++;///*++;///*+++;-%////*;$@/*+;+++;///;@```
+```$%///*++;%////*++;///++++;///*++;///*+++;-%////*;$@/*+;+++;///;@?-++;%/*++;?```
 
 ### Output:
 ```
@@ -18,6 +18,10 @@ Branches:
   Computer Science
   Programming languages
   Programming languages and compilers
+
+Operating Systems:
+  Pop!_OS
+  prismBSD
 ```
 
 ### typecode licensed under the terms of MIT License.
